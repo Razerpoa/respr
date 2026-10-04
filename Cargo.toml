@@ -1,3 +1,5 @@
+cargo-features = ["trim-paths", "panic-immediate-abort"]
+
 [package]
 name = "hider"
 version = "0.1.0"
@@ -14,8 +16,10 @@ zstd = "0.14.0"
 tempfile = "3.27.0"
 
 [profile.release]
-opt-level = 3          # Maximize speed optimizations (default for release)
-lto = "fat"            # Perform aggressive Link-Time Optimization across all crates
-codegen-units = 1      # Reduce to 1 to give LLVM full context for optimizations
-panic = "abort"        # Remove stack unwinding logic, reducing binary size and overhead
-strip = "debuginfo"    # Remove debug info to slim down the final executable
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "immediate-abort"
+strip = true
+trim-paths = "all"
+overflow-checks = false

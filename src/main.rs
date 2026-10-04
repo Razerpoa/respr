@@ -1,9 +1,6 @@
 use hider::{Manifest, ManifestSplitter};
 use std::{
-    env,
-    error::Error,
-    fs,
-    path::{Path, PathBuf},
+    env, error::Error, fs, path::{Path, PathBuf},
 };
 
 fn find_files_recursive(folder_path: &Path) -> Result<Vec<PathBuf>, std::io::Error> {
@@ -143,7 +140,24 @@ fn main() -> Result<(), Box<dyn Error>> {
             if files.is_empty() {
                 return Err("No DLL files found in the specified directory".into());
             }
-
+            
+            // if files.len() < 10 {
+            //     let mut user_input = String::new();
+            //     print!("Total files are below 10, not recommended for use. Continue? (y/n): ");
+            //     loop {
+            //         io::stdout().flush()?;
+            //         io::stdin().read_line(&mut user_input)?;
+            //         user_input = user_input.trim().to_lowercase();
+            //         if user_input == "n" {
+            //             return Ok(());
+            //         } 
+            //         if user_input == "y" {
+            //             break;
+            //         }
+            //         print!("Continue? (y/n): ");
+            //     }
+            // }
+            
             let total_files = files.len() as f32;
             let k = (total_files * 0.5).ceil() as usize;
             let m = files.len() - k;

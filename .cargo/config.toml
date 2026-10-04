@@ -1,2 +1,31 @@
-[target.x86_64-unknown-linux-gnu]
-linker = "clang"
+[unstable]
+trim-paths = true
+build-std = ["core", "alloc", "std"]
+build-std-features = ["optimize_for_size"]
+
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld"
+rustflags = [
+    "-Zunstable-options",
+
+    # Windows Hardening & PE Mitigations
+    "-C", "link-arg=/NXCOMPAT",
+    "-C", "link-arg=/DYNAMICBASE",
+    "-C", "link-arg=/HIGHENTROPYVA",
+    "-C", "link-arg=/DEBUG:NONE",
+    "-C", "link-arg=/PDBALTPATH:%_PDB%",
+    "-C", "target-feature=+crt-static",
+
+    # Allow test harnesses to build when rustflags force -C panic=abort.
+    "-Z", "panic-abort-tests",
+]
+
+[target.x86_64-unknown-linux-musl]
+linker = "rust-lld"
+rustflags = [
+    "-Zunstable-options",
+    "-C", "target-feature=+crt-static",
+
+    # Allow test harnesses to build when rustflags force -C panic=abort.
+    "-Z", "panic-abort-tests",
+]
