@@ -1,7 +1,7 @@
 /target
 
 # Generated artifacts (never source)
-/manifest.json
+*.json
 /redundant_segments/
 /segments/
 /restored/
