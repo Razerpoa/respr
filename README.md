@@ -211,7 +211,3 @@ is not authentication, and it is not a MAC.
 
 If you need the data to be unreadable without a secret, add encryption at the
 `pack`/`unpack` boundary before relying on this for anything sensitive.
-
-## License
-
-No license file is present. All rights reserved by default.
