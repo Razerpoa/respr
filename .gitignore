@@ -1,0 +1,10 @@
+/target
+
+# Generated artifacts (never source)
+/manifest.json
+/redundant_segments/
+/segments/
+/restored/
+
+# Local host-file trees used to hide data in
+/simulated_user/

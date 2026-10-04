@@ -1,0 +1,21 @@
+[package]
+name = "hider"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crc32fast = "1.5.2"
+reed-solomon-erasure = "6.0.0"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+zstd = "0.14.0"
+
+[dev-dependencies]
+tempfile = "3.27.0"
+
+[profile.release]
+opt-level = 3          # Maximize speed optimizations (default for release)
+lto = "fat"            # Perform aggressive Link-Time Optimization across all crates
+codegen-units = 1      # Reduce to 1 to give LLVM full context for optimizations
+panic = "abort"        # Remove stack unwinding logic, reducing binary size and overhead
+strip = "debuginfo"    # Remove debug info to slim down the final executable
